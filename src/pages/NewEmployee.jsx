@@ -41,15 +41,40 @@ function NewEmployee() {
       </Link>
       <h2>Create Employee</h2>
       <form action="#" id="create-employee" className="form" onSubmit={handleSubmit}>
-        <Input label="First Name" type="text" id="first-name" value={firstName} onChange={setFirstName} />
-        <Input label="Last Name" type="text" id="last-name" value={lastName} onChange={setLastName} />
-        <Input label="Date Of Birth" type="date" id="date-of-birth" value={birthDay} onChange={setBirthDay} />
-        <Input label="Start Date" type="date" id="start-date" value={startDate} onChange={setStartDate} />
-        <Input label="Street" type="text" id="street" value={street} onChange={setStreet} />
-        <Input label="City" type="text" id="city" value={city} onChange={setCity} />
-        <Select label="State" id="state" value={state} options={statesOptions} onChange={setState} />
-        <Input label="Zip Code" type="number" id="zip-code" value={zipCode} onChange={setZipCode} />
-        <Select label="Department" id="department" value={department} options={departmentsOptions} onChange={setDepartment} />
+        <div>
+          <h3 className="form_title">Informations</h3>
+          <div className="form_informations">
+            <div className="form_name">
+              <Input label="First Name" type="text" id="first-name" value={firstName} onChange={setFirstName} />
+              <Input label="Last Name" type="text" id="last-name" value={lastName} onChange={setLastName} />
+            </div>
+            <div className="form_dates">
+              <Input label="Date Of Birth" type="date" id="date-of-birth" value={birthDay} onChange={setBirthDay} />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 className="form_title">Address</h3>
+          <div className="form_address-informations">
+            <div className="form_address">
+              <Input label="Street" type="text" id="street" value={street} onChange={setStreet} />
+              <Input label="City" type="text" id="city" value={city} onChange={setCity} />
+            </div>
+            <Input label="Zip Code" type="number" id="zip-code" value={zipCode} onChange={setZipCode} />
+            <Select label="State" id="state" value={state} options={statesOptions} onChange={setState} />
+          </div>
+        </div>
+
+        <div>
+          <h3 className="form_title">Post informations</h3>
+          <div className="form_post-informations">
+            <Select label="Department" id="department" value={department} options={departmentsOptions} onChange={setDepartment} />
+            <Input label="Start Date" type="date" id="start-date" value={startDate} onChange={setStartDate} />
+          </div>
+
+        </div>
+
         <button type="submit">Save</button>
       </form>
     </div>
