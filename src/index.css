@@ -73,12 +73,23 @@ a {
 .employee-list_container div {
   font-family: 'Poppins', sans-serif;
   border: none;
-  min-width: 145px;
   cursor: pointer;
   padding: 8px;
   text-align: start;
   font-size: 16px;
   font-weight: 400;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.data-table_sort-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #77843b85;
 }
 
 thead th{

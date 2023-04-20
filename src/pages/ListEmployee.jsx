@@ -1,12 +1,23 @@
 import {useSelector} from "react-redux";
-import {useState} from "react";
+import {useState, useMemo} from "react";
 import {Link} from "react-router-dom";
 
-function ListEmployee() {
-  const employees = useSelector((state) => state.employees.employees)
-  const [sortOrder, setSortOrder] = useState("asc");
-  const [sortColumn, setSortColumn] = useState("firstName");
-  const sortedEmployees = employees.sort((a, b) => {
+function formatDate(timestamp) {
+  if (!timestamp) {
+    return ""
+  }
+
+  const date = new Date(timestamp);
+
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return `${day < 10 ? '0' : ''}${day}/${month < 10 ? '0' : ''}${month}/${year}`;
+}
+
+function sortEmployees({ employees, sortColumn, sortOrder }) {
+  return employees.sort((a, b) => {
     const aValue = a[sortColumn];
     const bValue = b[sortColumn];
     const sortOrderFactor = sortOrder === "asc" ? 1 : -1;
@@ -23,36 +34,13 @@ function ListEmployee() {
       return 0;
     }
   });
+}
 
-  const rows = sortedEmployees.map((employee, index) => {
-    const date = new Date(employee.startDate);
-
-    function formatDate(timestamp) {
-      if (!timestamp) {
-        return ""
-      }
-
-      const day = date.getDate();
-      const month = date.getMonth() + 1;
-      const year = date.getFullYear();
-
-      return `${day < 10 ? '0' : ''}${day}/${month < 10 ? '0' : ''}${month}/${year}`;
-    }
-
-    return (
-      <tr key={index}>
-        <td>{employee.firstName}</td>
-        <td>{employee.lastName}</td>
-        <td>{formatDate(employee.startDate)}</td>
-        <td>{employee.department}</td>
-        <td>{formatDate(employee.birthDay)}</td>
-        <td>{employee.street}</td>
-        <td>{employee.city}</td>
-        <td>{employee.state}</td>
-        <td>{employee.zipCode}</td>
-      </tr>
-    );
-  });
+function ListEmployee() {
+  const employees = useSelector((state) => state.employees.employees);
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortColumn, setSortColumn] = useState("firstName");
+  const sortedEmployees = useMemo(() => sortEmployees({ employees: [...employees], sortColumn, sortOrder }), [employees, sortColumn, sortOrder]);
 
   function handleSort(column) {
     if (column === sortColumn) {
@@ -63,6 +51,18 @@ function ListEmployee() {
     }
   }
 
+  const columns = [
+    { label: 'First Name', onClick: () => handleSort('firstName') },
+    { label: 'Last Name', onClick: () => handleSort('lastName') },
+    { label: 'Start Date', onClick: () => handleSort('startDate') },
+    { label: 'Department', onClick: () => handleSort('department') },
+    { label: 'Date of birth', onClick: () => handleSort('birthDay') },
+    { label: 'Street', onClick: () => handleSort('street') },
+    { label: 'City', onClick: () => handleSort('city') },
+    { label: 'State', onClick: () => handleSort('state') },
+    { label: 'Zip code', onClick: () => handleSort('zipCode') },
+  ]
+
   return (
     <div className="employee-list_container">
       <h1>Current employees</h1>
@@ -71,37 +71,45 @@ function ListEmployee() {
       </Link>
       <table className="data-table">
         <thead>
-        <tr>
-          <th>
-            <div onClick={() => handleSort("firstName")} id="table-first-name">First Name</div>
-          </th>
-          <th>
-            <div onClick={() => handleSort("lastName")} id="table-last-name">Last Name</div>
-          </th>
-          <th>
-            <div onClick={() => handleSort("startDate")} id="table-start-date">Start Date</div>
-          </th>
-          <th>
-            <div onClick={() => handleSort("department")} id="table-department">Department</div>
-          </th>
-          <th>
-            <div onClick={() => handleSort("birthDay")} id="table-date-of-birth">Date of birth</div>
-          </th>
-          <th>
-            <div onClick={() => handleSort("street")} id="table-street">Street</div>
-          </th>
-          <th>
-            <div onClick={() => handleSort("city")} id="table-city">City</div>
-          </th>
-          <th>
-            <div onClick={() => handleSort("state")} id="table-state">State</div>
-          </th>
-          <th>
-            <div onClick={() => handleSort("zipCode")} id="table-zip-code">Zip code</div>
-          </th>
-        </tr>
+          <tr>
+            {columns.map(({ label, onClick }, index) => (
+              <th key={index}>
+                <div onClick={onClick}>
+                  <span>
+                    {label}
+                  </span>
+
+                  <span className="data-table_sort-icons">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" style={{height: 12, width: 12}}>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/>
+                    </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" style={{height: 12, width: 12}}>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                    </svg>
+                  </span>
+                </div>
+              </th>
+            ))}
+          </tr>
         </thead>
-        <tbody id="table-content">{rows}</tbody>
+        <tbody id="table-content">
+          {sortedEmployees.map((employee, index) => (
+            <tr key={index}>
+              <td>{employee.firstName}</td>
+              <td>{employee.lastName}</td>
+              <td>{formatDate(employee.startDate)}</td>
+              <td>{employee.department}</td>
+              <td>{formatDate(employee.birthDay)}</td>
+              <td>{employee.street}</td>
+              <td>{employee.city}</td>
+              <td>{employee.state}</td>
+              <td>{employee.zipCode}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   )
