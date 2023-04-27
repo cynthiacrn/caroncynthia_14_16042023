@@ -1,3 +1,15 @@
+export const employeesTableColumns = [
+  { label: 'First Name', value: 'firstName' },
+  { label: 'Last Name', value: 'lastName' },
+  { label: 'Start Date', value: 'startDate' },
+  { label: 'Department', value: 'department' },
+  { label: 'Date of birth', value: 'birthDay' },
+  { label: 'Street', value: 'street' },
+  { label: 'City', value: 'city' },
+  { label: 'State', value: 'state' },
+  { label: 'Zip code', value: 'zipCode' },
+]
+
 export const departmentsOptions = [
   {
     label: "Sales",
