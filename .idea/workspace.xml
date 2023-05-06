@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="02073cf2-d9d6-4cf0-bfc9-ee5dd1b7ac46" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ListEmployee.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ListEmployee.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/NewEmployee.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/NewEmployee.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +49,7 @@
       <option name="presentableId" value="Default" />
       <updated>1682615788981</updated>
       <workItem from="1682615790211" duration="1873000" />
-      <workItem from="1683365207995" duration="10642000" />
+      <workItem from="1683365207995" duration="11975000" />
     </task>
     <servers />
   </component>

@@ -81,7 +81,9 @@ function NewEmployee() {
         <button type="submit">Save</button>
       </form>
 
-      <SuccessModal open={open} setOpen={setOpen} />
+      <SuccessModal open={open} setOpen={setOpen}>
+        <span onClick={() => setOpen(false)} className="success-modal__close-icon">&times;</span>
+      </SuccessModal>
     </div>
   )
 }

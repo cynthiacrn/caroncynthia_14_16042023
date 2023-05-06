@@ -1211,10 +1211,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@cynthiaaa_crn/success-modal@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@cynthiaaa_crn/success-modal/-/success-modal-0.1.0.tgz#15da6abc50445124588cc607d072b6317da957bc"
-  integrity sha512-4GAf58oPlG8wnYK4NlIADL4P/RvkaM+hmQWBL9y89/WldoNKamQCMDpT+EYQzJQ6WHy0MEw1tfwjzgW0YrBEyg==
+"@cynthiaaa_crn/success-modal@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@cynthiaaa_crn/success-modal/-/success-modal-0.1.1.tgz#4425390b3d015d35eaa27caf39d164156c6b7fef"
+  integrity sha512-XZXmlyGT7PJsYu5voHTDAS6TAdCVXelOWskYmahgiY+sYI2R2BOjbmuXwW8tflx4V1Dq+WJrkogg2V3vtJUDNw==
   dependencies:
     "@babel/cli" "^7.21.5"
 
