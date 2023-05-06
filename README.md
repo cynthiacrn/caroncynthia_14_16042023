@@ -20,6 +20,6 @@ In order to run this project, please follow the steps below.
 3. Open the terminal
 
     - `npm install --global yarn` to install all dependencies
-    - `yarn start` to run the project
+    - `npm start` to run the project
 
 HRnet is now rendered at URL `http://localhost:3000`
