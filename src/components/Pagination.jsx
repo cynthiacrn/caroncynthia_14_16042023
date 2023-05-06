@@ -1,4 +1,4 @@
-function Pagination({employees, perPage, setCurrentPage, currentPage}){
+function Pagination({ employees, perPage, setCurrentPage, currentPage }){
   const totalPages = Math.ceil(employees.length / perPage)
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
 

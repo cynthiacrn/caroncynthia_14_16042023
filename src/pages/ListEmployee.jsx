@@ -38,18 +38,22 @@ function ListEmployee() {
         Home
       </Link>
 
-      <input type="text" value={searchQuery} onInput={(event) => setSearchQuery(event.target.value)} />
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <div style={{ display: "flex", justifyContent: "end", flex: 1 }}>
+          <div className="employee-list_select-entries">
+            <label htmlFor="entries-select">Show</label>
+            <select name="entries" id="entries-select" onChange={(event) => setPerPage(+event.target.value)}>
+              <option value={10}>10</option>
+              <option value={25}>25</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </select>
+            <div>entries</div>
+          </div>
+        </div>
 
-      <div>
-        <div className="employee-list_select-entries">
-          <label htmlFor="entries-select">Show</label>
-          <select name="entries" id="entries-select" onChange={(event) => setPerPage(+event.target.value)}>
-            <option value={10}>10</option>
-            <option value={25}>25</option>
-            <option value={50}>50</option>
-            <option value={100}>100</option>
-          </select>
-          <div>entries</div>
+        <div style={{ display: "flex", justifyContent: "start", flex: 1 }}>
+          <input type="text" value={searchQuery} onInput={(event) => setSearchQuery(event.target.value)} />
         </div>
       </div>
 
@@ -107,6 +111,10 @@ function ListEmployee() {
           ))}
         </tbody>
       </table>
+
+      <div>
+        Showing {currentPage} to {perPage} of {employees.length} entries
+      </div>
 
       <Pagination
         employees={employees}
