@@ -5,7 +5,7 @@ import { useState } from "react";
 import { departmentsOptions, statesOptions } from "../constants";
 import { useDispatch } from "react-redux";
 import { addEmployee } from "../store/reducers/employees";
-import SuccessModal from "../components/SuccessModal";
+import { SuccessModal } from "@cynthiaaa_crn/success-modal";
 
 function NewEmployee() {
   const dispatch = useDispatch()
@@ -80,6 +80,7 @@ function NewEmployee() {
 
         <button type="submit">Save</button>
       </form>
+
       <SuccessModal open={open} setOpen={setOpen} />
     </div>
   )
