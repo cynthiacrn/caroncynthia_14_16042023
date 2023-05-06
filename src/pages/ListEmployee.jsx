@@ -1,23 +1,25 @@
 import {useSelector} from "react-redux";
-import {useState, useMemo} from "react";
+import {useState, useMemo, useEffect} from "react";
 import {Link} from "react-router-dom";
 import {employeesTableColumns} from "../constants"
-import {sortEmployees, formatDate} from "../utils";
+import {sortEmployees, formatDate, searchEmployees} from "../utils";
 import Pagination from "../components/Pagination";
 
 function ListEmployee() {
   const employees = useSelector((state) => state.employees.employees);
+  const [searchQuery, setSearchQuery] = useState("");
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortColumn, setSortColumn] = useState("firstName");
   const displayableEmployees = useMemo(() => {
     const sortedEmployees = sortEmployees({ employees: [...employees], sortColumn, sortOrder })
+    const filteredEmployees = searchEmployees({ employees: sortedEmployees, searchQuery })
 
     const lastIndex = currentPage * perPage;
     const firstIndex = lastIndex - perPage;
-    return sortedEmployees.slice(firstIndex, lastIndex);
-  }, [employees, sortColumn, sortOrder, currentPage, perPage])
+    return filteredEmployees.slice(firstIndex, lastIndex);
+  }, [employees, sortColumn, sortOrder, currentPage, perPage, searchQuery])
 
   function setSort(column) {
     if (column === sortColumn) {
@@ -35,6 +37,8 @@ function ListEmployee() {
       <Link to="/">
         Home
       </Link>
+
+      <input type="text" value={searchQuery} onInput={(event) => setSearchQuery(event.target.value)} />
 
       <div>
         <div className="employee-list_select-entries">

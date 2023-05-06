@@ -31,3 +31,9 @@ export function sortEmployees({ employees, sortColumn, sortOrder }) {
     }
   });
 }
+
+export function searchEmployees({ employees, searchQuery }) {
+  return employees.filter((employee) => {
+    return Object.values(employee).some((value) => value.toLowerCase().includes(searchQuery.toLowerCase()))
+  })
+}
