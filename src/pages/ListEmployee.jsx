@@ -3,6 +3,7 @@ import {useState, useMemo} from "react";
 import {Link} from "react-router-dom";
 import {employeesTableColumns} from "../constants"
 import {sortEmployees, formatDate} from "../utils";
+import Pagination from "../components/Pagination";
 
 function ListEmployee() {
   const employees = useSelector((state) => state.employees.employees);
@@ -10,8 +11,6 @@ function ListEmployee() {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("asc");
   const [sortColumn, setSortColumn] = useState("firstName");
-  const totalPages = Math.ceil(employees.length / perPage)
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1)
   const displayableEmployees = useMemo(() => {
     const sortedEmployees = sortEmployees({ employees: [...employees], sortColumn, sortOrder })
 
@@ -45,16 +44,6 @@ function ListEmployee() {
             <option value={25}>25</option>
             <option value={50}>50</option>
             <option value={100}>100</option>
-          </select>
-          <div>entries</div>
-        </div>
-      </div>
-
-      <div>
-        <div className="employee-list_select-entries">
-          <label htmlFor="entries-select">Show</label>
-          <select name="entries" id="entries-select" onChange={(event) => setCurrentPage(+event.target.value)}>
-            {pageNumbers.map((pageNumber) => <option value={pageNumber}>{pageNumber}</option>)}
           </select>
           <div>entries</div>
         </div>
@@ -114,6 +103,13 @@ function ListEmployee() {
           ))}
         </tbody>
       </table>
+
+      <Pagination
+        employees={employees}
+        perPage={perPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </div>
   )
 }
