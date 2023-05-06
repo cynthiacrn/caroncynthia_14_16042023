@@ -5,6 +5,7 @@ import { useState } from "react";
 import { departmentsOptions, statesOptions } from "../constants";
 import { useDispatch } from "react-redux";
 import { addEmployee } from "../store/reducers/employees";
+import SuccessModal from "../components/SuccessModal";
 
 function NewEmployee() {
   const dispatch = useDispatch()
@@ -17,6 +18,7 @@ function NewEmployee() {
   const [state, setState] = useState('')
   const [zipCode, setZipCode] = useState('')
   const [department, setDepartment] = useState('')
+  const [open, setOpen] = useState(false)
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -31,6 +33,7 @@ function NewEmployee() {
       zipCode,
       department
     }))
+    setOpen(true)
   }
 
   return (
@@ -77,6 +80,7 @@ function NewEmployee() {
 
         <button type="submit">Save</button>
       </form>
+      <SuccessModal open={open} setOpen={setOpen} />
     </div>
   )
 }
