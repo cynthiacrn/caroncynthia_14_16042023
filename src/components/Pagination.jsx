@@ -27,8 +27,9 @@ function Pagination({ employees, perPage, setCurrentPage, currentPage }){
       </button>
 
       <div id="pagination-numbers">
-        {pageNumbers.map((pageNumber) =>
+        {pageNumbers.map((pageNumber, index) =>
           <button
+            key={index}
             className="pagination-button"
             onClick={() => setCurrentPage(pageNumber)}
           >

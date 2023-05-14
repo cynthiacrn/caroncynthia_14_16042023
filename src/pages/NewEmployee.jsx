@@ -75,13 +75,12 @@ function NewEmployee() {
             <Select label="Department" id="department" value={department} options={departmentsOptions} onChange={setDepartment} />
             <Input label="Start Date" type="date" id="start-date" value={startDate} onChange={setStartDate} />
           </div>
-
         </div>
-
         <button type="submit">Save</button>
       </form>
 
       <SuccessModal open={open} setOpen={setOpen}>
+        <p>Employee Created!</p>
         <span onClick={() => setOpen(false)} className="success-modal__close-icon">&times;</span>
       </SuccessModal>
     </div>
