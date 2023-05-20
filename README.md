@@ -1,7 +1,5 @@
 # HRnet : PROJECT 14 Frontend Developer, OPENCLASSROOMS course
 
-Develop an analytics dashboard with React
-
 ## Dependencies
 
 - React v18.2.0
